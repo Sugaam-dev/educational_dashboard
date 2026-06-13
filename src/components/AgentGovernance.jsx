@@ -192,7 +192,7 @@ export default function AgentGovernance() {
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('offerRate')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden md:table-cell" onClick={() => handleSort('offerRate')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Offer %</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
@@ -204,19 +204,19 @@ export default function AgentGovernance() {
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('enrollmentRate')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden lg:table-cell" onClick={() => handleSort('enrollmentRate')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Enroll %</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('revenue')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden sm:table-cell" onClick={() => handleSort('revenue')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Revenue</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('complianceScore')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden md:table-cell" onClick={() => handleSort('complianceScore')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Compliance</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
@@ -240,11 +240,11 @@ export default function AgentGovernance() {
                       <td className="py-4 px-3 text-center font-bold text-slate-800">
                         {agent.applications.toLocaleString()}
                       </td>
-                      <td className="py-4 px-3 text-center font-semibold">{agent.offerRate}%</td>
+                      <td className="py-4 px-3 text-center font-semibold hidden md:table-cell">{agent.offerRate}%</td>
                       <td className="py-4 px-3 text-center font-semibold">{agent.visaRate}%</td>
-                      <td className="py-4 px-3 text-center font-semibold">{agent.enrollmentRate}%</td>
-                      <td className="py-4 px-3 text-center font-black text-slate-800">{formatCurrency(agent.revenue)}</td>
-                      <td className="py-4 px-3 text-center">
+                      <td className="py-4 px-3 text-center font-semibold hidden lg:table-cell">{agent.enrollmentRate}%</td>
+                      <td className="py-4 px-3 text-center font-black text-slate-800 hidden sm:table-cell">{formatCurrency(agent.revenue)}</td>
+                      <td className="py-4 px-3 text-center hidden md:table-cell">
                         <span className={`font-extrabold ${getComplianceColor(agent.complianceScore)}`}>
                           {agent.complianceScore}%
                         </span>

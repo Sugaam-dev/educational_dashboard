@@ -141,7 +141,7 @@ export default function CountryGovernance() {
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('leads')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden lg:table-cell" onClick={() => handleSort('leads')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Leads</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
@@ -153,7 +153,7 @@ export default function CountryGovernance() {
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('offers')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden md:table-cell" onClick={() => handleSort('offers')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Offers</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
@@ -165,13 +165,13 @@ export default function CountryGovernance() {
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('enrollmentRate')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden lg:table-cell" onClick={() => handleSort('enrollmentRate')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Enroll Rate</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
                     </div>
                   </th>
-                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center" onClick={() => handleSort('revenue')}>
+                  <th className="py-3.5 px-3 select-none cursor-pointer hover:bg-slate-50 text-center hidden sm:table-cell" onClick={() => handleSort('revenue')}>
                     <div className="flex items-center justify-center space-x-1">
                       <span>Revenue</span>
                       <ArrowUpDown className="h-3 w-3 text-slate-400" />
@@ -186,14 +186,14 @@ export default function CountryGovernance() {
                   return (
                     <tr key={c.country} className="hover:bg-slate-50/80 transition-colors">
                       <td className="py-4 px-5 font-bold text-slate-900">{c.country}</td>
-                      <td className="py-4 px-3 text-center">{c.leads.toLocaleString()}</td>
+                      <td className="py-4 px-3 text-center hidden lg:table-cell">{c.leads.toLocaleString()}</td>
                       <td className="py-4 px-3 text-center">{c.applications.toLocaleString()}</td>
-                      <td className="py-4 px-3 text-center">{c.offers.toLocaleString()}</td>
+                      <td className="py-4 px-3 text-center hidden md:table-cell">{c.offers.toLocaleString()}</td>
                       <td className={`py-4 px-3 text-center font-bold ${isVisaRisk ? 'text-rose-600 bg-rose-50/20' : 'text-slate-800'}`}>
                         {c.visaRate}%
                       </td>
-                      <td className="py-4 px-3 text-center font-semibold">{c.enrollmentRate}%</td>
-                      <td className="py-4 px-3 text-center font-black text-slate-900">{formatCurrency(c.revenue)}</td>
+                      <td className="py-4 px-3 text-center font-semibold hidden lg:table-cell">{c.enrollmentRate}%</td>
+                      <td className="py-4 px-3 text-center font-black text-slate-900 hidden sm:table-cell">{formatCurrency(c.revenue)}</td>
                       <td className="py-4 px-4 text-center whitespace-nowrap">{getTrendIcon(c.trend)}</td>
                     </tr>
                   );
