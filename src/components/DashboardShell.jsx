@@ -6,14 +6,11 @@ import {
   Globe, 
   Grid, 
   Sparkles, 
-  Menu, 
   ChevronLeft, 
   ChevronRight, 
   LogOut, 
-  Bell, 
   Calendar,
-  Layers,
-  User
+  Layers
 } from 'lucide-react';
 import DashboardOverview from './DashboardOverview';
 import FunnelGovernance from './FunnelGovernance';
@@ -31,7 +28,6 @@ export default function DashboardShell({
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
 
   // Nav items configuration
   const navItems = [
@@ -77,23 +73,32 @@ export default function DashboardShell({
   return (
     <div className="min-h-screen bg-slate-50 flex text-slate-800 font-sans antialiased">
       
-      {/* Sidebar Navigation */}
+      {/* Light-Themed Sidebar Navigation */}
       <aside 
-        className={`bg-slate-900 text-slate-300 border-r border-slate-800 transition-all duration-300 flex flex-col justify-between z-30 ${
+        className={`bg-white text-slate-700 border-r border-slate-200 transition-all duration-300 flex flex-col justify-between z-30 ${
           isCollapsed ? 'w-16' : 'w-64'
         }`}
       >
         <div>
-          {/* Logo Brand Header */}
-          <div className="h-16 flex items-center px-4 border-b border-slate-800 bg-slate-950/40">
-            <div className="flex items-center space-x-3 overflow-hidden">
-              <div className="h-8 w-8 bg-blue-600 rounded flex items-center justify-center shrink-0 shadow shadow-blue-500/25">
-                <Layers className="h-4.5 w-4.5 text-white" />
-              </div>
-              {!isCollapsed && (
-                <span className="font-bold text-white tracking-wide text-sm whitespace-nowrap bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-                  EduGov Control
-                </span>
+          {/* Logo Brand Header - Featuring PMRG Solution Logo */}
+          <div className="h-16 flex items-center px-4 border-b border-slate-200 bg-slate-50/50">
+            <div className="flex items-center overflow-hidden w-full">
+              {isCollapsed ? (
+                /* Crop and focus on the icon emblem part when collapsed */
+                <div className="h-9 w-9 overflow-hidden rounded bg-slate-100 flex items-center justify-center border border-slate-200/60 shadow-sm">
+                  <img 
+                    src="/logo.png" 
+                    alt="PMRG Solution Emblem" 
+                    className="h-7 w-auto max-w-none scale-[1.7] object-left translate-x-1" 
+                  />
+                </div>
+              ) : (
+                /* Show full logo when expanded */
+                <img 
+                  src="/logo.png" 
+                  alt="PMRG Solution Logo" 
+                  className="h-10 w-auto object-contain" 
+                />
               )}
             </div>
           </div>
@@ -108,26 +113,26 @@ export default function DashboardShell({
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
                   title={isCollapsed ? item.label : undefined}
-                  className={`w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all group relative ${
+                  className={`w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-bold transition-all group relative border ${
                     isActive 
-                      ? 'bg-blue-600 text-white shadow shadow-blue-500/10' 
-                      : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-100'
+                      ? 'bg-blue-50 border-blue-100 text-blue-600 shadow-sm' 
+                      : 'border-transparent text-slate-500 hover:bg-slate-100/80 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className={`h-5 w-5 shrink-0 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`} />
+                  <Icon className={`h-5 w-5 shrink-0 ${isActive ? 'text-blue-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
                   
                   {!isCollapsed && (
                     <span className="ml-3 transition-opacity duration-200 truncate">{item.label}</span>
                   )}
 
                   {!isCollapsed && item.badge && (
-                    <span className="ml-auto px-1.5 py-0.5 text-[10px] font-bold bg-blue-500/20 text-blue-400 rounded-md border border-blue-500/30">
+                    <span className="ml-auto px-1.5 py-0.5 text-[10px] font-black bg-blue-50 text-blue-600 rounded-md border border-blue-100">
                       {item.badge}
                     </span>
                   )}
 
                   {isCollapsed && item.badge && (
-                    <span className="absolute top-1 right-1 h-2 w-2 bg-blue-500 rounded-full border border-slate-900" />
+                    <span className="absolute top-1 right-1 h-2 w-2 bg-blue-500 rounded-full border border-white" />
                   )}
                 </button>
               );
@@ -136,24 +141,24 @@ export default function DashboardShell({
         </div>
 
         {/* Sidebar Footer (Collapse Toggle + Logout) */}
-        <div className="p-2 border-t border-slate-800/80 bg-slate-950/20">
+        <div className="p-2 border-t border-slate-200 bg-slate-50/40">
           {/* Collapse Button */}
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="w-full flex items-center justify-center py-2 text-slate-500 hover:text-slate-300 hover:bg-slate-800/50 rounded-lg transition-colors mb-1"
+            className="w-full flex items-center justify-center py-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors mb-1 font-bold"
           >
             {isCollapsed ? <ChevronRight className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
-            {!isCollapsed && <span className="ml-2 text-xs font-semibold">Collapse Navigation</span>}
+            {!isCollapsed && <span className="ml-2 text-xs font-bold">Collapse Navigation</span>}
           </button>
 
           {/* Quick Logout Button */}
           <button
             onClick={onLogout}
-            className="w-full flex items-center px-3 py-2 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg text-sm transition-all"
+            className="w-full flex items-center px-3 py-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg text-sm font-bold transition-all"
             title={isCollapsed ? "Log Out" : undefined}
           >
             <LogOut className="h-5 w-5 shrink-0" />
-            {!isCollapsed && <span className="ml-3 font-semibold">Log Out</span>}
+            {!isCollapsed && <span className="ml-3">Log Out</span>}
           </button>
         </div>
       </aside>
@@ -166,9 +171,9 @@ export default function DashboardShell({
           
           {/* Breadcrumb page indicator */}
           <div className="flex items-center space-x-2">
-            <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">platform</span>
+            <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">platform</span>
             <span className="text-slate-300 font-normal">/</span>
-            <span className="text-slate-800 text-sm font-bold capitalize">
+            <span className="text-slate-800 text-sm font-black capitalize">
               {page === 'matrix' ? 'Program × Channel Matrix' : page.replace('-', ' ')}
             </span>
           </div>
@@ -176,8 +181,8 @@ export default function DashboardShell({
           {/* Right Action Items */}
           <div className="flex items-center space-x-4">
             
-            {/* Timestamp status badge (mock environment) */}
-            <div className="hidden md:flex items-center space-x-1.5 px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-md text-xs font-medium">
+            {/* Timestamp status badge */}
+            <div className="hidden md:flex items-center space-x-1.5 px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-md text-xs font-bold">
               <Calendar className="h-3.5 w-3.5" />
               <span>June 2026 Intake Cycle</span>
             </div>
@@ -197,7 +202,7 @@ export default function DashboardShell({
                   <div className="text-xs font-bold text-slate-800 leading-tight">
                     {user.name || 'Demo User'}
                   </div>
-                  <div className="text-[10px] font-semibold text-slate-500">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
                     {currentRoleLabel()}
                   </div>
                 </div>
@@ -207,14 +212,14 @@ export default function DashboardShell({
               {showProfileMenu && (
                 <div className="absolute right-0 mt-2 w-56 rounded-xl bg-white border border-slate-200 shadow-xl py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="px-4 py-2 border-b border-slate-100">
-                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Connected Stakeholder</p>
-                    <p className="text-sm font-bold text-slate-800 truncate">{user.name || 'Demo User'}</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">Connected Stakeholder</p>
+                    <p className="text-sm font-black text-slate-800 truncate">{user.name || 'Demo User'}</p>
                     <p className="text-xs text-slate-500 truncate">{user.email || 'demo@pmrg-gov.edu'}</p>
                   </div>
                   <div className="p-1">
                     <button
                       onClick={onLogout}
-                      className="w-full flex items-center px-3 py-2 text-sm text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                      className="w-full flex items-center px-3 py-2 text-sm text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors font-semibold"
                     >
                       <LogOut className="h-4 w-4 mr-2" />
                       <span>Log Out Stakeholder</span>
@@ -228,7 +233,7 @@ export default function DashboardShell({
         </header>
 
         {/* Inner page body (scrollable contents) */}
-        <main className="flex-1 p-6 md:p-8 overflow-y-auto">
+        <main className="flex-1 p-6 md:p-8 overflow-y-auto bg-slate-50">
           {renderActivePage()}
         </main>
       </div>
