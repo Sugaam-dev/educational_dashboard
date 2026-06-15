@@ -1,174 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import LandingPage from './components/LandingPage';
-import AuthPage from './components/AuthPage';
-import DashboardShell from './components/DashboardShell';
+import { useEffect, useState } from 'react';
+import AppShell from './components/layout/AppShell';
+import { appPages, initialTodos } from './data/dashboardData';
+import { useHashRoute } from './hooks/useHashRoute';
+import { useSessionUser } from './hooks/useSessionUser';
+import { useTemporaryNotes } from './hooks/useTemporaryNotes';
+import AgentsPage from './pages/AgentsPage';
+import AskBuddyPage from './pages/AskBuddyPage';
+import AuthPage from './pages/AuthPage';
+import DashboardPage from './pages/DashboardPage';
+import ExceptionsPage from './pages/ExceptionsPage';
+import FunnelPage from './pages/FunnelPage';
+import HeatmapDetailPage from './pages/HeatmapDetailPage';
+import LandingPage from './pages/LandingPage';
+import MarketsPage from './pages/MarketsPage';
+import MatrixPage from './pages/MatrixPage';
+import NotesPage from './pages/NotesPage';
+import RiskPage from './pages/RiskPage';
+import AuditPage from './pages/AuditPage';
+import SettingsPage from './pages/SettingsPage';
+import { findBuddyAnswer } from './utils/buddy';
+import { navigateHash } from './utils/routing';
 
-function App() {
-  const [view, setView] = useState('landing'); // 'landing' | 'auth' | 'app'
-  const [page, setPage] = useState('overview'); // 'overview' | 'funnel' | 'agents' | 'countries' | 'matrix' | 'buddy'
-  const [projectId, setProjectId] = useState(null);
-  const [buddyQuery, setBuddyQuery] = useState('');
-  const [redirectTarget, setRedirectTarget] = useState(null);
-  const [user, setUser] = useState(null); // Authenticated user profile
+export default function App() {
+  const route = useHashRoute();
+  const [user, setUser] = useSessionUser();
+  const [todos, setTodos] = useState(initialTodos);
+  const [query, setQuery] = useState('');
+  const [buddyReply, setBuddyReply] = useState('Choose a template question or ask about finance approvals, visa risk, documents, markets, or overdue approvals.');
+  const [notes, setNotes] = useTemporaryNotes();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  // Define custom navigation function
-  const navigateTo = (nextView, nextPage = 'overview', nextProjectId = null, nextBuddyQuery = '', nextRedirectTarget = null) => {
-    setView(nextView);
-    setPage(nextPage);
-    setProjectId(nextProjectId);
-    setBuddyQuery(nextBuddyQuery);
-    
-    let targetRedirect = nextRedirectTarget;
-    if (nextRedirectTarget !== null) {
-      setRedirectTarget(nextRedirectTarget);
-    } else {
-      targetRedirect = redirectTarget;
-    }
-
-    // Build URL hash representation
-    let hash = `#${nextView}`;
-    if (nextView === 'app') {
-      hash += `?page=${nextPage}`;
-      if (nextProjectId) hash += `&projectId=${nextProjectId}`;
-      if (nextBuddyQuery) hash += `&query=${encodeURIComponent(nextBuddyQuery)}`;
-    }
-
-    const stateObj = { 
-      view: nextView, 
-      page: nextPage, 
-      projectId: nextProjectId, 
-      buddyQuery: nextBuddyQuery,
-      redirectTarget: targetRedirect
-    };
-    
-    window.history.pushState(stateObj, '', hash);
-  };
-
-  // Parse hash and initialize state on startup
   useEffect(() => {
-    const parseUrlHash = () => {
-      const hash = window.location.hash || '#landing';
-      const questionIdx = hash.indexOf('?');
-      
-      let currentView = 'landing';
-      let currentPage = 'overview';
-      let currentProjectId = null;
-      let currentBuddyQuery = '';
-      
-      const viewPart = questionIdx === -1 ? hash : hash.substring(0, questionIdx);
-      if (viewPart === '#auth') {
-        currentView = 'auth';
-      } else if (viewPart === '#app') {
-        currentView = 'app';
-      }
-      
-      if (questionIdx !== -1) {
-        const queryStr = hash.substring(questionIdx + 1);
-        const params = new URLSearchParams(queryStr);
-        currentPage = params.get('page') || 'overview';
-        currentProjectId = params.get('projectId');
-        currentBuddyQuery = params.get('query') || '';
-      }
-
-      // Read user profile from session storage to maintain session on refresh
-      const savedUser = sessionStorage.getItem('edu_gov_user');
-      let parsedUser = null;
-      if (savedUser) {
-        parsedUser = JSON.parse(savedUser);
-        setUser(parsedUser);
-      }
-
-      if (currentView === 'app' && !parsedUser) {
-        // Redirect unauthorized access to auth
-        setView('auth');
-        window.history.replaceState({ view: 'auth', page: 'overview', projectId: null, buddyQuery: '', redirectTarget: null }, '', '#auth');
-        return;
-      }
-
-      setView(currentView);
-      setPage(currentPage);
-      setProjectId(currentProjectId);
-      setBuddyQuery(currentBuddyQuery);
-      
-      window.history.replaceState(
-        { view: currentView, page: currentPage, projectId: currentProjectId, buddyQuery: currentBuddyQuery, redirectTarget: null },
-        '',
-        window.location.hash || '#landing'
-      );
-    };
-
-    parseUrlHash();
-
-    // Listen to popstate event for back/forward navigation
-    const handlePopState = (e) => {
-      if (e.state) {
-        const savedUser = sessionStorage.getItem('edu_gov_user');
-        if (!savedUser && e.state.view === 'app') {
-          setView('auth');
-          window.history.replaceState({ view: 'auth', page: 'overview', projectId: null, buddyQuery: '', redirectTarget: null }, '', '#auth');
-          return;
-        }
-
-        setView(e.state.view || 'landing');
-        setPage(e.state.page || 'overview');
-        setProjectId(e.state.projectId || null);
-        setBuddyQuery(e.state.buddyQuery || '');
-        setRedirectTarget(e.state.redirectTarget || null);
-      } else {
-        parseUrlHash();
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
-
-  const handleLogin = (userProfile) => {
-    setUser(userProfile);
-    sessionStorage.setItem('edu_gov_user', JSON.stringify(userProfile));
-    
-    // Check redirection target from Card A landing CTA
-    if (redirectTarget === 'buddy') {
-      navigateTo('app', 'buddy', null, '');
-      setRedirectTarget(null);
-    } else {
-      navigateTo('app', 'overview', null, '');
+    if (appPages.includes(route.page) && !user) {
+      navigateHash('login', { redirect: route.page, ...route.params });
     }
-  };
+  }, [route, user]);
 
-  const handleLogout = () => {
+  function login(profile, redirect = 'dashboard') {
+    const nextUser = profile || { name: 'Demo User', email: 'demo@unigov.local', role: 'Project Manager', initials: 'DU' };
+    setUser(nextUser);
+    navigateHash(redirect);
+  }
+
+  function logout() {
     setUser(null);
-    sessionStorage.removeItem('edu_gov_user');
-    navigateTo('landing');
-  };
+    navigateHash('landing');
+  }
 
-  const renderView = () => {
-    switch (view) {
-      case 'landing':
-        return <LandingPage onNavigate={navigateTo} />;
-      case 'auth':
-        return <AuthPage onNavigate={navigateTo} onLogin={handleLogin} redirectTarget={redirectTarget} />;
-      case 'app':
-        if (!user) return <AuthPage onNavigate={navigateTo} onLogin={handleLogin} redirectTarget={redirectTarget} />;
-        return (
-          <DashboardShell 
-            user={user} 
-            page={page} 
-            buddyQuery={buddyQuery}
-            onNavigate={navigateTo} 
-            onLogout={handleLogout} 
-          />
-        );
-      default:
-        return <LandingPage onNavigate={navigateTo} />;
-    }
-  };
+  function askBuddy(text) {
+    const response = findBuddyAnswer(text);
+    setQuery(text);
+    setBuddyReply(response.answer);
+    navigateHash('ask-buddy');
+  }
+
+  function toggleTodo(index) {
+    setTodos((current) => current.map((todo, todoIndex) => (
+      todoIndex === index ? { ...todo, done: !todo.done } : todo
+    )));
+  }
+
+  if (route.page === 'landing') {
+    return <LandingPage />;
+  }
+
+  if (route.page === 'login') {
+    return <AuthPage route={route} onLogin={login} />;
+  }
+
+  if (!user || !appPages.includes(route.page)) {
+    return null;
+  }
 
   return (
-    <div className="min-h-screen">
-      {renderView()}
-    </div>
+    <AppShell
+      route={route}
+      user={user}
+      onLogout={logout}
+      sidebarCollapsed={sidebarCollapsed}
+      setSidebarCollapsed={setSidebarCollapsed}
+    >
+      {route.page === 'dashboard' && <DashboardPage todos={todos} toggleTodo={toggleTodo} onAsk={askBuddy} />}
+      {route.page === 'funnel' && <FunnelPage onAsk={askBuddy} />}
+      {route.page === 'risk' && <RiskPage />}
+      {route.page === 'heatmap-detail' && <HeatmapDetailPage params={route.params} />}
+      {route.page === 'exceptions' && <ExceptionsPage onAsk={askBuddy} />}
+      {route.page === 'agents' && <AgentsPage />}
+      {route.page === 'markets' && <MarketsPage />}
+      {route.page === 'matrix' && <MatrixPage />}
+      {route.page === 'ask-buddy' && <AskBuddyPage query={query} setQuery={setQuery} reply={buddyReply} onAsk={askBuddy} />}
+      {route.page === 'notes' && <NotesPage notes={notes} setNotes={setNotes} />}
+      {route.page === 'audit-trail' && <AuditPage />}
+      {route.page === 'settings' && <SettingsPage user={user} setUser={setUser} />}
+    </AppShell>
   );
 }
-
-export default App;
