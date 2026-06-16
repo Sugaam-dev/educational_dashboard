@@ -19,6 +19,7 @@ import { navigateHash } from '../utils/routing';
 import { heatmapDetails } from '../data/dashboardData';
 
 // Project metadata mapper
+// Project metadata mapper
 const getProjectMeta = (project) => {
   const p = project.toLowerCase();
   
@@ -31,7 +32,7 @@ const getProjectMeta = (project) => {
       stuckAge: '8 days',
       desc: "Upgrading the international agent partner portal to run automated document quality verifications and track recruiter compliance levels in real-time.",
       recommendation: "Freeze Zenith Admissions Lagos portals immediately. Agent visa approval rates have fallen below the mandatory 80% threshold (currently 58.2%).",
-      activeGate: 'Submission',
+      activeGate: 'Application Intake',
       costStatus: 'Approved',
       slaStatus: 'Breached'
     };
@@ -45,7 +46,7 @@ const getProjectMeta = (project) => {
       stuckAge: '6 days',
       desc: "Managing student financial aid allocations, criteria filters, and board approval workflow pipelines for high-achieving candidates.",
       recommendation: 'Review MBA and Nursing fee exception requests immediately. Finance sign-off has exceeded target SLA window of 72 hours.',
-      activeGate: 'Cost Approval',
+      activeGate: 'Deposit Clearance',
       costStatus: 'Pending',
       slaStatus: 'Breached'
     };
@@ -59,7 +60,7 @@ const getProjectMeta = (project) => {
       stuckAge: '5 days',
       desc: "Automated analysis of embassy rejection histories, sponsor bank certificates, and high-risk country pipelines for the June 2026 intake.",
       recommendation: 'Freeze Zenith admissions portal access immediately. Lagos consulate approval rates have fallen to 58.2%.',
-      activeGate: 'AI Gap Analysis',
+      activeGate: 'Visa Sponsorship Check',
       costStatus: 'Approved',
       slaStatus: 'At Risk'
     };
@@ -71,9 +72,9 @@ const getProjectMeta = (project) => {
       owner: 'Anil S.',
       budget: '$140,000',
       stuckAge: '11 days',
-      desc: "Reconciling billing systems with ERP financials to audit unapproved waivers and tuition deposit clearings.",
+      desc: "Reconciling billing systems with ERP financials to audit unapproved tuition waivers and tuition deposit clearings.",
       recommendation: 'Execute manual ledgers sync. 11 tuition waivers are awaiting verification by the chief audit officer.',
-      activeGate: 'Cost Approval',
+      activeGate: 'Deposit Clearance',
       costStatus: 'Pending',
       slaStatus: 'Breached'
     };
@@ -85,9 +86,9 @@ const getProjectMeta = (project) => {
       owner: 'Registrar Office',
       budget: '$95,000',
       stuckAge: '4 days',
-      desc: "Automating transcript verification and certificate matching using OCR to identify compressed files and verify mark sheets.",
+      desc: "Automating transcript verification and certificate matching using OCR to identify document file defects and verify secondary mark sheets.",
       recommendation: "Manually verify 4 files where OCR flagged compression artifacts on secondary certificates.",
-      activeGate: 'AI Gap Analysis',
+      activeGate: 'Visa Sponsorship Check',
       costStatus: 'Approved',
       slaStatus: 'At Risk'
     };
@@ -101,7 +102,7 @@ const getProjectMeta = (project) => {
       stuckAge: '3 days',
       desc: "Planning tuition pricing, volume targets, and recruitment agents incentives across growing vs declining countries.",
       recommendation: "Rebalance budgets away from West Africa currency volatility and shift capacity towards UAE and India tier-2 regions.",
-      activeGate: 'Business Validation',
+      activeGate: 'Academic Review',
       costStatus: 'Approved',
       slaStatus: 'Good Standing'
     };
@@ -115,7 +116,7 @@ const getProjectMeta = (project) => {
       stuckAge: '2 days',
       desc: "Scheduling student housing allocations, arrival briefings, orientation slots, and local bank account setup assistance.",
       recommendation: "Coordinate airport pickup lists for the nursing cohort and confirm TRC briefing dates.",
-      activeGate: 'Submission',
+      activeGate: 'Application Intake',
       costStatus: 'Approved',
       slaStatus: 'Good Standing'
     };
@@ -129,7 +130,7 @@ const getProjectMeta = (project) => {
       stuckAge: '9 days',
       desc: "Auditing student visa credentials, Ministry of Education decree letters, English capability certificates, and finance sign-offs.",
       recommendation: "Escalate stuck dossiers awaiting ministry uploads. Benjamin O. has breached the 48-hour warning window.",
-      activeGate: 'Solution Document Review',
+      activeGate: 'Final Enrollment Audit',
       costStatus: 'Approved',
       slaStatus: 'Breached'
     };
@@ -143,7 +144,7 @@ const getProjectMeta = (project) => {
       stuckAge: '6 days',
       desc: "Balancing admission volumes for MD (Medicine), Nursing, BBA, and MBA programs based on faculty sizes and clinical capacity caps.",
       recommendation: "Verify Nursing clinical capacity cap and review MD direct admissions intake conversion pace.",
-      activeGate: 'Cost Estimation',
+      activeGate: 'Tuition Assessment',
       costStatus: 'Pending',
       slaStatus: 'Breached'
     };
@@ -157,7 +158,7 @@ const getProjectMeta = (project) => {
       stuckAge: '2 days',
       desc: "Releasing course registration pins, active student ID cards, portal credentials, and introductory syllabus files.",
       recommendation: "Deploy automated notifications to registered candidates and release registration pins for BBA.",
-      activeGate: 'Solution Document Review',
+      activeGate: 'Final Enrollment Audit',
       costStatus: 'Approved',
       slaStatus: 'Good Standing'
     };
@@ -171,7 +172,7 @@ const getProjectMeta = (project) => {
       stuckAge: '1 day',
       desc: "Immutable recording of administrator SSO logins, quality warnings, portal restrictions, and tuition fee approvals.",
       recommendation: "Run automated SHA-256 validation scan on the compliance ledger block entries.",
-      activeGate: 'Business Validation',
+      activeGate: 'Academic Review',
       costStatus: 'Approved',
       slaStatus: 'Good Standing'
     };
@@ -185,7 +186,7 @@ const getProjectMeta = (project) => {
       stuckAge: '4 days',
       desc: "Managing student safety alerts, hostel booking check-ins, local medical registrations, and TRC arrival assistance.",
       recommendation: "Approve budget clearance for emergency housing vouchers and confirm airport terminal pick-ups.",
-      activeGate: 'Submission',
+      activeGate: 'Application Intake',
       costStatus: 'Approved',
       slaStatus: 'At Risk'
     };
@@ -199,7 +200,7 @@ const getProjectMeta = (project) => {
       stuckAge: '3 days',
       desc: "Predicting total enrollments, visa drop-off rates, and tuition revenue projections for future intake cycles.",
       recommendation: "Refresh forecasting models with Nigerian deposit drop-off trends and UAE buy signals.",
-      activeGate: 'AI Gap Analysis',
+      activeGate: 'Visa Sponsorship Check',
       costStatus: 'Approved',
       slaStatus: 'Good Standing'
     };
@@ -213,7 +214,7 @@ const getProjectMeta = (project) => {
       stuckAge: '7 days',
       desc: "Allocating campus housing units, processing accommodation deposits, and verifying roommate profiles.",
       recommendation: "Release block assignments for the nursing cohort and clear deposit exceptions.",
-      activeGate: 'Submission',
+      activeGate: 'Application Intake',
       costStatus: 'Approved',
       slaStatus: 'Breached'
     };
@@ -228,7 +229,7 @@ const getProjectMeta = (project) => {
     stuckAge: '3 days',
     desc: `University admissions governance workflow checklist for regulating ${project} checkpoints.`,
     recommendation: `Verify compliance readiness status for ${project} and review eligibility requirements.`,
-    activeGate: 'Business Validation',
+    activeGate: 'Academic Review',
     costStatus: 'Approved',
     slaStatus: 'Good Standing'
   };
@@ -236,12 +237,12 @@ const getProjectMeta = (project) => {
 
 // Lifecycle timeline steps
 const STEPS = [
-  { name: 'Submission', desc: 'BRD intake review, metadata registration.', date: 'May 20' },
-  { name: 'Business Validation', desc: 'Business Owner validation alignment.', date: 'May 22' },
-  { name: 'AI Gap Analysis', desc: 'Automated scan on document gaps.', date: 'May 23' },
-  { name: 'Cost Estimation', desc: 'Technical architecture engineering sizing.', date: 'May 24' },
-  { name: 'Cost Approval', desc: 'Finance approval budget allocation.', date: 'May 25' },
-  { name: 'Solution Document Review', desc: 'Architectural alignment validation.', date: 'Architecture sign-off' }
+  { name: 'Application Intake', desc: 'Academic records, transcripts, and credentials uploaded.', date: 'May 20' },
+  { name: 'Academic Review', desc: 'Faculty credential checks, GPA checks, and offer validation.', date: 'May 22' },
+  { name: 'Visa Sponsorship Check', desc: 'Verification of proof of funds, sponsorship, and visa status.', date: 'May 23' },
+  { name: 'Tuition Assessment', desc: 'Fee assessment, scholarship matching, and tuition billing.', date: 'May 24' },
+  { name: 'Deposit Clearance', desc: 'Finance deposit clearance and CAS/visa support issuance.', date: 'May 25' },
+  { name: 'Final Enrollment Audit', desc: 'Registrar document check-in, registration, and ID card release.', date: 'Audit complete' }
 ];
 
 export default function HeatmapDetailPage({ params }) {
@@ -562,26 +563,26 @@ export default function HeatmapDetailPage({ params }) {
 
         {/* Documents Tab Content */}
         {activeTab === 'Documents' && (
-          <Card title="Document Artifacts Ledger">
+          <Card title="Student Credentials & Document Ledger">
             <div className="space-y-4">
               <div style={{ padding: '12px 16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
                 <div>
-                  <strong style={{ color: '#1e293b' }}>Business Requirement Document (BRD)</strong>
-                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Uploaded by {meta.pm} • Checked and parsed by AI scanner</span>
+                  <strong style={{ color: '#1e293b' }}>Verified Academic Transcripts & Degrees</strong>
+                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Uploaded by agent partner • Audited and certified by Registrar Office</span>
                 </div>
                 <span className="badge badge-green">Verified</span>
               </div>
               <div style={{ padding: '12px 16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
                 <div>
-                  <strong style={{ color: '#1e293b' }}>System Architecture Blueprint</strong>
-                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Awaiting Solution Architect sign-off</span>
+                  <strong style={{ color: '#1e293b' }}>English Language Proficiency Certificate (IELTS/TOEFL)</strong>
+                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Awaiting academic equivalency confirmation</span>
                 </div>
                 <span className="badge badge-amber">Under Review</span>
               </div>
               <div style={{ padding: '12px 16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
                 <div>
-                  <strong style={{ color: '#94a3b8' }}>Compliance & Security Checklist</strong>
-                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Not yet submitted by development lead</span>
+                  <strong style={{ color: '#94a3b8' }}>Ministry Equivalence Decree / Attestation</strong>
+                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Not yet uploaded to the student file</span>
                 </div>
                 <span className="badge badge-red" style={{ opacity: 0.6 }}>Pending Upload</span>
               </div>
@@ -591,19 +592,19 @@ export default function HeatmapDetailPage({ params }) {
 
         {/* Approvals Tab Content */}
         {activeTab === 'Approvals' && (
-          <Card title="Approval Gates Sign-off History">
+          <Card title="Admissions Approval Gates Sign-off History">
             <div className="space-y-3" style={{ fontSize: '12px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #eef2f7' }}>
-                <strong>BRD Intake Approval</strong>
-                <span style={{ color: '#10b981', fontWeight: 'bold' }}>Signed-off by {meta.owner} (May 22)</span>
+                <strong>Application & Transcript Intake Verification</strong>
+                <span style={{ color: '#10b981', fontWeight: 'bold' }}>Approved by Admissions Desk (May 22)</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #eef2f7' }}>
-                <strong>System Architecture Design</strong>
-                <span style={{ color: '#10b981', fontWeight: 'bold' }}>Signed-off by Solution Architect (May 23)</span>
+                <strong>Academic Eligibility & GPA Auditing</strong>
+                <span style={{ color: '#10b981', fontWeight: 'bold' }}>Approved by Dean of Faculty (May 23)</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
-                <strong>Finance Budget Allocation</strong>
-                <span style={{ color: '#d97706', fontWeight: 'bold' }}>Awaiting audit verification by Anil S.</span>
+                <strong>Tuition Deposit & Scholarship Clearance</strong>
+                <span style={{ color: '#d97706', fontWeight: 'bold' }}>Awaiting sign-off by Finance Office</span>
               </div>
             </div>
           </Card>
@@ -611,26 +612,26 @@ export default function HeatmapDetailPage({ params }) {
 
         {/* Costing Tab Content */}
         {activeTab === 'Costing' && (
-          <Card title="Project Cost Sizing & Budget Details">
+          <Card title="Intake Fee & Sized Budget Details">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '12px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 10px', borderBottom: '1px solid #eef2f7' }}>
-                <span>Front-end UI/UX Redesign</span>
+                <span>Annual Tuition Assessment</span>
                 <strong>$45,000</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 10px', borderBottom: '1px solid #eef2f7' }}>
-                <span>Payment Processing Integration</span>
+                <span>Clinical & Laboratory Capacity Fee</span>
                 <strong>$35,000</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 10px', borderBottom: '1px solid #eef2f7' }}>
-                <span>Automated Document AI Scanning API</span>
+                <span>International Health Insurance Levy</span>
                 <strong>$25,000</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 10px', borderBottom: '1px solid #eef2f7' }}>
-                <span>Audit Ledger Setup & Support</span>
+                <span>Admissions & Equivalency Filing Fee</span>
                 <strong>$15,000</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 10px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-                <span style={{ fontWeight: 'black', fontSize: '13px' }}>Total Sized Budget</span>
+                <span style={{ fontWeight: 'black', fontSize: '13px' }}>Total Assessed Fees</span>
                 <strong style={{ fontSize: '13px', color: '#0f766e' }}>{meta.budget}</strong>
               </div>
             </div>
@@ -639,24 +640,24 @@ export default function HeatmapDetailPage({ params }) {
 
         {/* Risks Tab Content */}
         {activeTab === 'Risks' && (
-          <Card title="Active Risks & Mitigations Log">
+          <Card title="Active Admissions & Visa Compliance Risks">
             <div className="space-y-4">
               <div style={{ padding: '12px', border: '1px solid #fee2e2', background: '#fff5f5', borderRadius: '12px', fontSize: '12px' }}>
-                <strong style={{ color: '#b91c1c', display: 'block' }}>⚠️ SLA Breach (Critical Risk)</strong>
+                <strong style={{ color: '#b91c1c', display: 'block' }}>⚠️ SLA Gateway Breach (Immigration Risk)</strong>
                 <p style={{ margin: '4px 0 8px 0', color: '#475569' }}>
-                  Stuck in Submission gate for {meta.stuckAge} (exceeds target SLA window of 72 hours).
+                  Stuck in {meta.activeGate} for {meta.stuckAge} (exceeds admissions target window of 72 hours).
                 </p>
                 <em style={{ fontStyle: 'normal', color: '#94a3b8', fontSize: '10px', fontWeight: 'bold' }}>
-                  Active mitigation: Auto-ping Owner every 12 hours.
+                  Active mitigation: Trigger auto-alert to regional sponsor liaison.
                 </em>
               </div>
               <div style={{ padding: '12px', border: '1px solid #fef3c7', background: '#fffbeb', borderRadius: '12px', fontSize: '12px' }}>
-                <strong style={{ color: '#d97706', display: 'block' }}>⚠️ Schedule Slip (Medium Risk)</strong>
+                <strong style={{ color: '#d97706', display: 'block' }}>⚠️ Document Defect Risk</strong>
                 <p style={{ margin: '4px 0 8px 0', color: '#475569' }}>
-                  Potential delay in front-end UI testing due to reviewer capacity issues in South Asia region.
+                  Potential delay in visa filing due to missing ministry attestation decree.
                 </p>
                 <em style={{ fontStyle: 'normal', color: '#94a3b8', fontSize: '10px', fontWeight: 'bold' }}>
-                  Active mitigation: Route BBA/MBA files to secondary reviewer pool.
+                  Active mitigation: Route file to priority international verification pool.
                 </em>
               </div>
             </div>
@@ -665,24 +666,24 @@ export default function HeatmapDetailPage({ params }) {
 
         {/* Audit Trail Tab Content */}
         {activeTab === 'Audit Trail' && (
-          <Card title="Project Activity Ledger Logs">
+          <Card title="Admissions Activity Ledger Logs">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '11px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', borderBottom: '1px solid #f1f5f9' }}>
                 <span style={{ fontFamily: 'monospace', color: '#64748b' }}>12 Jun 2026 10:30</span>
-                <span>BRD Submission</span>
-                <span style={{ color: '#475569' }}>{meta.pm} uploaded draft BRD v1.0</span>
+                <span>Application Submitted</span>
+                <span style={{ color: '#475569' }}>Agent partner uploaded student transcripts</span>
                 <span className="badge badge-green" style={{ fontSize: '9px', padding: '2px 6px' }}>Completed</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', borderBottom: '1px solid #f1f5f9' }}>
                 <span style={{ fontFamily: 'monospace', color: '#64748b' }}>13 Jun 2026 11:15</span>
-                <span>Audit Check</span>
-                <span>System ran automated scan on document gaps</span>
+                <span>Admissions Audit</span>
+                <span>System validated credentials against regional GPA indexes</span>
                 <span className="badge badge-green" style={{ fontSize: '9px', padding: '2px 6px' }}>Passed</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px' }}>
                 <span style={{ fontFamily: 'monospace', color: '#64748b' }}>15 Jun 2026 15:30</span>
-                <span>SLA Warning</span>
-                <span>System auto-flagged stuck age threshold breach</span>
+                <span>SLA Flagged</span>
+                <span>System auto-warned target gateway deadline exceeded</span>
                 <span className="badge badge-red" style={{ fontSize: '9px', padding: '2px 6px' }}>Escalated</span>
               </div>
             </div>
@@ -694,7 +695,7 @@ export default function HeatmapDetailPage({ params }) {
           <Card title="Governance Buddy Consultation & Chase Notes">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <p className="card-copy" style={{ fontSize: '11px', margin: 0 }}>
-                Generate automated chase notes to notify the Business Owner of the SLA breach, or review policy exceptions with the AI Buddy.
+                Generate automated chase notes to notify the Admissions Manager of the SLA breach, or review policy exceptions with the AI Buddy.
               </p>
               
               <div style={{ display: 'flex', gap: '10px', marginTop: '6px' }}>

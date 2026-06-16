@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { navItems } from '../../data/dashboardData';
 import { navigateHash } from '../../utils/routing';
 import {
@@ -16,30 +17,104 @@ import {
   Users,
   Settings,
   LogOut,
+  Menu,
+  X,
+  // New icons
+  MousePointerClick,
+  Megaphone,
+  Building2,
+  CalendarDays,
+  DollarSign,
+  BadgeCheck,
+  GraduationCap,
+  ListOrdered,
+  University,
+  BookOpen,
+  Banknote,
+  ShieldAlert,
+  LayoutDashboard,
 } from 'lucide-react';
 
 const navIcons = {
-  dashboard: Gauge,
-  funnel: GitPullRequest,
-  risk: AlertTriangle,
-  exceptions: ShieldCheck,
-  agents: Users,
-  markets: Globe,
-  matrix: Grid,
-  'ask-buddy': Bot,
-  notes: FileText,
-  'audit-trail': ClipboardList,
-  settings: Settings,
+  dashboard:             Gauge,
+  funnel:                GitPullRequest,
+  risk:                  AlertTriangle,
+  exceptions:            ShieldCheck,
+  'ask-buddy':           Bot,
+  notes:                 FileText,
+  'audit-trail':         ClipboardList,
+  settings:              Settings,
+  // Layer 3 — Channel Governance
+  agents:                Users,
+  markets:               Globe,
+  matrix:                Grid,
+  'direct-admissions':   MousePointerClick,
+  'digital-campaigns':   Megaphone,
+  'regional-offices':    Building2,
+  'education-fairs':     CalendarDays,
+  'revenue-governance':  DollarSign,
+  'admission-quality':   BadgeCheck,
+  // Layer 2 — Student Governance
+  'student-lifecycle':   GraduationCap,
+  'student-pipeline':    ListOrdered,
+  // Layer 1 — Institutional Governance
+  'university-governance':  University,
+  'academic-performance':   BookOpen,
+  'finance-governance':     Banknote,
+  'compliance-centre':      ShieldAlert,
 };
 
+// Grouped nav structure
+const NAV_GROUPS = [
+  {
+    label: null, // ungrouped core items at the top
+    ids: ['dashboard', 'funnel', 'risk', 'exceptions', 'ask-buddy', 'notes', 'audit-trail', 'settings'],
+  },
+  {
+    label: 'Channel Governance',
+    ids: ['agents', 'markets', 'matrix', 'direct-admissions', 'digital-campaigns', 'regional-offices', 'education-fairs', 'revenue-governance', 'admission-quality'],
+  },
+  {
+    label: 'Student Governance',
+    ids: ['student-lifecycle', 'student-pipeline'],
+  },
+  {
+    label: 'Institutional Governance',
+    ids: ['university-governance', 'academic-performance', 'finance-governance', 'compliance-centre'],
+  },
+];
+
 export default function AppShell({ route, user, onLogout, sidebarCollapsed, setSidebarCollapsed, children }) {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  const closeMobile = () => setMobileNavOpen(false);
+
   return (
     <div className={`app-frame ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-      <aside className="right-sidebar">
-        <button className="brand sidebar-brand" onClick={() => navigateHash('landing')} aria-label="Go to landing page">
-          <img src="/logo.png" alt="PMRG Solution logo" />
-          {!sidebarCollapsed && <span>UniGov</span>}
-        </button>
+      {/* Mobile backdrop overlay */}
+      {mobileNavOpen && (
+        <div
+          className="sidebar-mobile-backdrop"
+          onClick={closeMobile}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside className={`right-sidebar ${mobileNavOpen ? 'mobile-open' : ''}`}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px' }}>
+          <button className="brand sidebar-brand" onClick={() => { navigateHash('landing'); closeMobile(); }} aria-label="Go to landing page">
+            <img src="/logo.png" alt="PMRG Solution logo" />
+            {!sidebarCollapsed && <span>UniGov</span>}
+          </button>
+          {/* Close button on mobile */}
+          <button
+            className="sidebar-mobile-close"
+            onClick={closeMobile}
+            aria-label="Close navigation"
+          >
+            <X size={18} />
+          </button>
+        </div>
 
         <button
           className="sidebar-rail-toggle"
@@ -50,22 +125,44 @@ export default function AppShell({ route, user, onLogout, sidebarCollapsed, setS
           {sidebarCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
         </button>
 
-        <nav aria-label="Dashboard navigation">
-          {navItems.map((item) => (
-            <SidebarNavButton key={item.id} item={item} active={route.page === item.id} collapsed={sidebarCollapsed} />
+        <nav aria-label="Dashboard navigation" style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
+          {NAV_GROUPS.map((group) => (
+            <div key={group.label || 'core'} className="nav-group">
+              {group.label && !sidebarCollapsed && (
+                <div className="nav-group-label">{group.label}</div>
+              )}
+              {group.label && sidebarCollapsed && (
+                <div className="nav-group-divider" />
+              )}
+              {group.ids.map((id) => {
+                const item = navItems.find((n) => n.id === id);
+                if (!item) return null;
+                return (
+                  <SidebarNavButton
+                    key={item.id}
+                    item={item}
+                    active={route.page === item.id}
+                    collapsed={sidebarCollapsed}
+                    onClick={closeMobile}
+                  />
+                );
+              })}
+            </div>
           ))}
         </nav>
 
         {!sidebarCollapsed && (
-          <div className="sidebar-card" style={{ marginBottom: '12px' }}>
+          <div className="sidebar-card" style={{ marginBottom: '12px', marginTop: '8px' }}>
             <strong>{user.name}</strong>
             <p>{user.role} - June 2026 intake</p>
           </div>
         )}
 
-        <div className="sidebar-footer" style={{ marginTop: 'auto', width: '100%' }}>
-          <button 
-            className="logout-btn" 
+        <div className="sidebar-footer" style={{ width: '100%' }}>
+
+
+          <button
+            className="logout-btn"
             onClick={onLogout}
             title="Logout"
             style={{
@@ -93,20 +190,20 @@ export default function AppShell({ route, user, onLogout, sidebarCollapsed, setS
       </aside>
 
       <main className="dashboard-shell">
-        <Topbar route={route} user={user} />
+        <Topbar route={route} user={user} onHamburger={() => setMobileNavOpen(true)} />
         {children}
       </main>
     </div>
   );
 }
 
-function SidebarNavButton({ item, active, collapsed }) {
+function SidebarNavButton({ item, active, collapsed, onClick, highlight }) {
   const Icon = navIcons[item.id] || ChartNoAxesColumnIncreasing;
 
   return (
     <button
-      className={active ? 'active' : ''}
-      onClick={() => navigateHash(item.id)}
+      className={`${active ? 'active' : ''} ${highlight ? 'nav-executive' : ''}`}
+      onClick={() => { navigateHash(item.id); onClick?.(); }}
       title={item.label}
     >
       <span className="nav-icon"><Icon size={16} strokeWidth={2.4} /></span>
@@ -115,16 +212,27 @@ function SidebarNavButton({ item, active, collapsed }) {
   );
 }
 
-function Topbar({ route, user }) {
+function Topbar({ route, user, onHamburger }) {
+  const allNavItems = navItems;
   const title = route.page === 'heatmap-detail'
-    ? 'Heatmap details'
-    : navItems.find((item) => item.id === route.page)?.label || 'Command center';
+    ? 'Heatmap Details'
+    : allNavItems.find((item) => item.id === route.page)?.label || 'Command Center';
 
   return (
     <section className="topbar">
-      <div>
-        <h1>{title}</h1>
-        <p>Education governance dashboard - Mon, 15 Jun 2026 - signed in as {user.name}</p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        {/* Hamburger — mobile only */}
+        <button
+          className="topbar-hamburger"
+          onClick={onHamburger}
+          aria-label="Open navigation menu"
+        >
+          <Menu size={20} />
+        </button>
+        <div>
+          <h1>{title}</h1>
+          <p>Education governance dashboard — Mon, 15 Jun 2026 — signed in as {user.name}</p>
+        </div>
       </div>
       <div className="topbar-actions">
         <button onClick={() => navigateHash('notes')}>Draft notes</button>
