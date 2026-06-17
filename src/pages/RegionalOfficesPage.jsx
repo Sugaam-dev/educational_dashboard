@@ -92,7 +92,7 @@ export default function RegionalOfficesPage({ onAsk }) {
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm mb-3">
               <Building2 size={12} />
-              Layer 3: Channel Governance
+               
             </span>
             <h1 className="text-2xl font-extrabold text-white sm:text-3xl">
               Regional Recruitment Offices

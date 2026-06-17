@@ -28,7 +28,7 @@ export default function StudentPipelinePage({ onAsk }) {
     <>
       <div className="rounded-xl mb-6 p-6 bg-gradient-to-r from-sky-600 to-blue-700 text-white">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white">Layer 2: Student Governance</span>
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white">Student Governance</span>
         </div>
         <h2 className="text-2xl font-black text-white mb-1">Student Pipeline Overview</h2>
         <p className="text-blue-100 text-sm">Kanban Board — Live Admission Pipeline — June 2026 Intake</p>

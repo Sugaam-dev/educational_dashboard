@@ -75,7 +75,7 @@ export default function StudentLifecyclePage({ onAsk }) {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-500/30 text-blue-100 border border-blue-400/40">
-              Layer 2: Student Governance
+              Student Governance
             </span>
             <ChevronRight size={14} className="text-blue-300" />
             <span className="text-blue-200 text-sm">Student Lifecycle</span>

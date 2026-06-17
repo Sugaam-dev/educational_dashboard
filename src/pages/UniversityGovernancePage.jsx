@@ -11,7 +11,7 @@ export default function UniversityGovernancePage({ onAsk }) {
     <>
       <div className="rounded-xl mb-6 p-6 bg-gradient-to-r from-slate-700 to-gray-800 text-white">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/30 text-white border border-white/10">Layer 1: Institutional Governance</span>
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/30 text-white border border-white/10"> </span>
         </div>
         <h2 className="text-2xl font-black text-white mb-1">University Governance Overview</h2>
         <p className="text-slate-300 text-sm">Institutional Health, Strategy & Compliance Dashboard</p>

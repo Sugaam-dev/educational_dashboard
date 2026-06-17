@@ -11,7 +11,9 @@ import {
   ArrowLeft,
   Calendar,
   Layers,
-  ArrowRight
+  ArrowRight,
+  Download,
+  ArrowUpRight
 } from 'lucide-react';
 import Card from '../components/common/Card';
 import DataTable from '../components/common/DataTable';
@@ -301,7 +303,7 @@ export default function HeatmapDetailPage({ params }) {
 
           <Card title="Related Compliance Records">
             <DataTable
-              headers={['Record ID', 'Owner Desk', 'Pending Age', 'Next Action Requirement']}
+              headers={['Record ID', 'Owner Desk', 'Pending Age', ' view Requirement']}
               rows={[
                 [<span style={{ fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold' }}>{project.replace(/\s+/g, '')}-001</span>, detail.owner, <span style={{ fontWeight: 'bold', color: '#ef4444' }}>6 days</span>, 'Escalate today'],
                 [<span style={{ fontFamily: 'monospace', fontSize: '11px' }}>{project.replace(/\s+/g, '')}-014</span>, 'PMO Coordinator', '3 days', 'Confirm checkpoint'],
@@ -565,26 +567,56 @@ export default function HeatmapDetailPage({ params }) {
         {activeTab === 'Documents' && (
           <Card title="Student Credentials & Document Ledger">
             <div className="space-y-4">
-              <div style={{ padding: '12px 16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
-                <div>
-                  <strong style={{ color: '#1e293b' }}>Verified Academic Transcripts & Degrees</strong>
-                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Uploaded by agent partner • Audited and certified by Registrar Office</span>
+              <div style={{ padding: '16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px' }}>
+                <div style={{ flex: 1, minWidth: '200px' }}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <strong style={{ color: '#1e293b' }}>Verified Academic Transcripts & Degrees</strong>
+                    <span className="badge badge-green text-[9px]">Verified</span>
+                  </div>
+                  <span className="muted" style={{ display: 'block', fontSize: '10px' }}>Uploaded by agent partner • Audited and certified by Registrar Office</span>
                 </div>
-                <span className="badge badge-green">Verified</span>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded flex items-center gap-1 transition-colors" onClick={() => alert('Downloading Verified Academic Transcripts & Degrees...')}>
+                    <Download size={12}/> Download
+                  </button>
+                  <button className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded flex items-center gap-1 transition-colors" onClick={() => alert('Sending approval follow-up request...')}>
+                    <ArrowUpRight size={12}/> Approval Follow up
+                  </button>
+                </div>
               </div>
-              <div style={{ padding: '12px 16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
-                <div>
-                  <strong style={{ color: '#1e293b' }}>English Language Proficiency Certificate (IELTS/TOEFL)</strong>
-                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Awaiting academic equivalency confirmation</span>
+              <div style={{ padding: '16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px' }}>
+                <div style={{ flex: 1, minWidth: '200px' }}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <strong style={{ color: '#1e293b' }}>English Language Proficiency Certificate (IELTS/TOEFL)</strong>
+                    <span className="badge badge-amber text-[9px]">Under Review</span>
+                  </div>
+                  <span className="muted" style={{ display: 'block', fontSize: '10px' }}>Awaiting academic equivalency confirmation</span>
                 </div>
-                <span className="badge badge-amber">Under Review</span>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded flex items-center gap-1 transition-colors" onClick={() => alert('Downloading IELTS/TOEFL Certificate...')}>
+                    <Download size={12}/> Download
+                  </button>
+                  <button className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded flex items-center gap-1 transition-colors" onClick={() => alert('Sending approval follow-up request...')}>
+                    <ArrowUpRight size={12}/> Approval Follow up
+                  </button>
+                </div>
               </div>
-              <div style={{ padding: '12px 16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
-                <div>
-                  <strong style={{ color: '#94a3b8' }}>Ministry Equivalence Decree / Attestation</strong>
-                  <span className="muted" style={{ display: 'block', fontSize: '10px', marginTop: '2px' }}>Not yet uploaded to the student file</span>
+              <div style={{ padding: '16px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px' }}>
+                <div style={{ flex: 1, minWidth: '200px' }}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <strong style={{ color: '#94a3b8' }}>Ministry Equivalence Decree / Attestation</strong>
+                    <span className="badge badge-red text-[9px]" style={{ opacity: 0.6 }}>Pending Upload</span>
+                  </div>
+                  <span className="muted" style={{ display: 'block', fontSize: '10px' }}>Not yet uploaded to the student file</span>
                 </div>
-                <span className="badge badge-red" style={{ opacity: 0.6 }}>Pending Upload</span>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded flex items-center gap-1 transition-colors" onClick={() => alert('Downloading placeholder file...')}>
+                    <Download size={12}/> Download
+                  </button>
+                  <button className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded flex items-center gap-1 transition-colors" onClick={() => alert('Requesting attestation upload follow-up...')}>
+                    <ArrowUpRight size={12}/> Approval Follow up
+                  </button>
+                </div>
               </div>
             </div>
           </Card>
@@ -642,23 +674,43 @@ export default function HeatmapDetailPage({ params }) {
         {activeTab === 'Risks' && (
           <Card title="Active Admissions & Visa Compliance Risks">
             <div className="space-y-4">
-              <div style={{ padding: '12px', border: '1px solid #fee2e2', background: '#fff5f5', borderRadius: '12px', fontSize: '12px' }}>
-                <strong style={{ color: '#b91c1c', display: 'block' }}>⚠️ SLA Gateway Breach (Immigration Risk)</strong>
-                <p style={{ margin: '4px 0 8px 0', color: '#475569' }}>
-                  Stuck in {meta.activeGate} for {meta.stuckAge} (exceeds admissions target window of 72 hours).
-                </p>
-                <em style={{ fontStyle: 'normal', color: '#94a3b8', fontSize: '10px', fontWeight: 'bold' }}>
-                  Active mitigation: Trigger auto-alert to regional sponsor liaison.
-                </em>
+              <div style={{ padding: '16px', border: '1px solid #fee2e2', background: '#fff5f5', borderRadius: '12px', fontSize: '12px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+                <div style={{ flex: 1, minWidth: '200px' }}>
+                  <strong style={{ color: '#b91c1c', display: 'block', fontSize: '13px' }}>⚠️ SLA Gateway Breach (Immigration Risk)</strong>
+                  <p style={{ margin: '4px 0 6px 0', color: '#475569' }}>
+                    Stuck in {meta.activeGate} for {meta.stuckAge} (exceeds admissions target window of 72 hours).
+                  </p>
+                  <em style={{ fontStyle: 'normal', color: '#94a3b8', fontSize: '10px', fontWeight: 'bold', display: 'block' }}>
+                    Active mitigation: Trigger auto-alert to regional sponsor liaison.
+                  </em>
+                </div>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded transition-colors" onClick={() => alert('Mitigation protocol initialized for SLA Breach.')}>
+                    Mitigate Risk
+                  </button>
+                  <button className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded transition-colors" onClick={() => alert('Escalating SLA Breach immigration risk to executive board.')}>
+                    Escalate Risk
+                  </button>
+                </div>
               </div>
-              <div style={{ padding: '12px', border: '1px solid #fef3c7', background: '#fffbeb', borderRadius: '12px', fontSize: '12px' }}>
-                <strong style={{ color: '#d97706', display: 'block' }}>⚠️ Document Defect Risk</strong>
-                <p style={{ margin: '4px 0 8px 0', color: '#475569' }}>
-                  Potential delay in visa filing due to missing ministry attestation decree.
-                </p>
-                <em style={{ fontStyle: 'normal', color: '#94a3b8', fontSize: '10px', fontWeight: 'bold' }}>
-                  Active mitigation: Route file to priority international verification pool.
-                </em>
+              <div style={{ padding: '16px', border: '1px solid #fef3c7', background: '#fffbeb', borderRadius: '12px', fontSize: '12px', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+                <div style={{ flex: 1, minWidth: '200px' }}>
+                  <strong style={{ color: '#d97706', display: 'block', fontSize: '13px' }}>⚠️ Document Defect Risk</strong>
+                  <p style={{ margin: '4px 0 6px 0', color: '#475569' }}>
+                    Potential delay in visa filing due to missing ministry attestation decree.
+                  </p>
+                  <em style={{ fontStyle: 'normal', color: '#94a3b8', fontSize: '10px', fontWeight: 'bold', display: 'block' }}>
+                    Active mitigation: Route file to priority international verification pool.
+                  </em>
+                </div>
+                <div className="flex gap-2">
+                  <button className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded transition-colors" onClick={() => alert('Document verification fallback mitigated.')}>
+                    Mitigate Risk
+                  </button>
+                  <button className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded transition-colors" onClick={() => alert('Escalating document defect risk to Academic Registrar Office.')}>
+                    Escalate Risk
+                  </button>
+                </div>
               </div>
             </div>
           </Card>
@@ -668,23 +720,44 @@ export default function HeatmapDetailPage({ params }) {
         {activeTab === 'Audit Trail' && (
           <Card title="Admissions Activity Ledger Logs">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '11px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', borderBottom: '1px solid #f1f5f9' }}>
-                <span style={{ fontFamily: 'monospace', color: '#64748b' }}>12 Jun 2026 10:30</span>
-                <span>Application Submitted</span>
-                <span style={{ color: '#475569' }}>Agent partner uploaded student transcripts</span>
-                <span className="badge badge-green" style={{ fontSize: '9px', padding: '2px 6px' }}>Completed</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 8px', borderBottom: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flex: 1, minWidth: '300px' }}>
+                  <span style={{ fontFamily: 'monospace', color: '#64748b', fontSize: '11px', width: '110px', flexShrink: 0 }}>12 Jun 2026 10:30</span>
+                  <span style={{ fontWeight: 'bold', color: '#1e293b', width: '140px', flexShrink: 0 }}>Application Submitted</span>
+                  <span style={{ color: '#475569', flex: 1 }}>Agent partner uploaded student transcripts</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span className="badge badge-green" style={{ fontSize: '9px', padding: '2px 6px' }}>Completed</span>
+                  <button className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold rounded transition-colors" onClick={() => alert('Reviewing transcript submissions  view...')}>
+                     view
+                  </button>
+                </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', borderBottom: '1px solid #f1f5f9' }}>
-                <span style={{ fontFamily: 'monospace', color: '#64748b' }}>13 Jun 2026 11:15</span>
-                <span>Admissions Audit</span>
-                <span>System validated credentials against regional GPA indexes</span>
-                <span className="badge badge-green" style={{ fontSize: '9px', padding: '2px 6px' }}>Passed</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 8px', borderBottom: '1px solid #f1f5f9', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flex: 1, minWidth: '300px' }}>
+                  <span style={{ fontFamily: 'monospace', color: '#64748b', fontSize: '11px', width: '110px', flexShrink: 0 }}>13 Jun 2026 11:15</span>
+                  <span style={{ fontWeight: 'bold', color: '#1e293b', width: '140px', flexShrink: 0 }}>Admissions Audit</span>
+                  <span style={{ color: '#475569', flex: 1 }}>System validated credentials against regional GPA indexes</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span className="badge badge-green" style={{ fontSize: '9px', padding: '2px 6px' }}>Passed</span>
+                  <button className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold rounded transition-colors" onClick={() => alert('Reviewing regional GPA indexes  view...')}>
+                     view
+                  </button>
+                </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px' }}>
-                <span style={{ fontFamily: 'monospace', color: '#64748b' }}>15 Jun 2026 15:30</span>
-                <span>SLA Flagged</span>
-                <span>System auto-warned target gateway deadline exceeded</span>
-                <span className="badge badge-red" style={{ fontSize: '9px', padding: '2px 6px' }}>Escalated</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 8px', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flex: 1, minWidth: '300px' }}>
+                  <span style={{ fontFamily: 'monospace', color: '#64748b', fontSize: '11px', width: '110px', flexShrink: 0 }}>15 Jun 2026 15:30</span>
+                  <span style={{ fontWeight: 'bold', color: '#1e293b', width: '140px', flexShrink: 0 }}>SLA Flagged</span>
+                  <span style={{ color: '#475569', flex: 1 }}>System auto-warned target gateway deadline exceeded</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span className="badge badge-red" style={{ fontSize: '9px', padding: '2px 6px' }}>Escalated</span>
+                  <button className="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold rounded transition-colors" onClick={() => alert('Initiating priority warning response  view...')}>
+                     view
+                  </button>
+                </div>
               </div>
             </div>
           </Card>

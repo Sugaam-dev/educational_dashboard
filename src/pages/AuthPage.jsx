@@ -22,7 +22,7 @@ export default function AuthPage({ route, onLogin }) {
       <section className="auth-card">
         <button className="brand auth-brand" onClick={() => navigateHash('landing')}>
           <img src="/logo.png" alt="PMRG Solution logo" />
-          <span>UniGov Control</span>
+          
         </button>
         <h1>{mode === 'login' ? 'Login to dashboard' : 'Create stakeholder access'}</h1>
         <p>Use demo login to skip details, or fill the static form to make the prototype feel like a real app.</p>

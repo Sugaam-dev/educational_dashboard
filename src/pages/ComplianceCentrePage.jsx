@@ -28,7 +28,7 @@ export default function ComplianceCentrePage({ onAsk }) {
     <>
       <div className="rounded-xl mb-6 p-6 bg-gradient-to-r from-red-700 to-rose-800 text-white shadow-lg">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/20 text-white border border-white/10">Layer 1: Institutional Governance</span>
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/20 text-white border border-white/10"> </span>
         </div>
         <h2 className="text-2xl font-black text-white mb-1">Compliance & Risk Management Centre</h2>
         <p className="text-red-100 text-sm">Regulatory, Data Protection & Institutional Risk Monitoring</p>

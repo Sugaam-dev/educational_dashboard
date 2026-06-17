@@ -80,7 +80,7 @@ export default function DirectAdmissionsPage({ onAsk }) {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 md:p-8 text-white shadow-xl">
         <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-white/20 rounded-full px-3 py-1 mb-3">
-          Layer 3: Channel Governance
+           
         </span>
         <h1 className="text-2xl md:text-3xl font-bold mb-1">Direct Admissions Channel</h1>
         <p className="text-blue-100 text-sm md:text-base">
@@ -89,7 +89,7 @@ export default function DirectAdmissionsPage({ onAsk }) {
         {onAsk && (
           <button
             onClick={() => onAsk("Which admission channel has the highest ROI?")}
-            className="mt-4 inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 transition rounded-lg px-4 py-2 text-sm font-medium"
+            className="mt-4 inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white transition rounded-lg px-4 py-2 text-sm font-medium"
           >
             <Lightbulb size={15} /> Ask Buddy about this channel
           </button>

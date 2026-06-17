@@ -80,7 +80,7 @@ export default function AuditPage() {
       {/* Title */}
       <div style={{ marginBottom: '18px' }}>
         <span style={{ fontSize: '10px', fontWeight: 'bold', letterSpacing: '0.05em', color: '#10b981', textTransform: 'uppercase', display: 'block' }}>
-          Platform Security Ledger
+           
         </span>
         <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#1e293b', margin: '4px 0 0' }}>
           Compliance Audit Trails

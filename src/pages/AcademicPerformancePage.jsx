@@ -32,7 +32,7 @@ export default function AcademicPerformancePage({ onAsk }) {
     <>
       <div className="rounded-xl mb-6 p-6 bg-gradient-to-r from-blue-600 to-cyan-700 text-white">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/20 text-white border border-white/10">Layer 1: Institutional Governance</span>
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/20 text-white border border-white/10"> </span>
         </div>
         <h2 className="text-2xl font-black text-white mb-1">Academic Excellence & Performance</h2>
         <p className="text-blue-100 text-sm">Program-Level Quality, Accreditation & Outcome Metrics</p>

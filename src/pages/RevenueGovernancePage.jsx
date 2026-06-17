@@ -119,7 +119,7 @@ export default function RevenueGovernancePage({ onAsk }) {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur mb-2 tracking-wide uppercase">
-              Layer 3: Channel Governance
+               
             </span>
             <h1 className="text-2xl md:text-3xl font-extrabold leading-tight">
               Recruitment Revenue Governance

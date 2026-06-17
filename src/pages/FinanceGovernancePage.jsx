@@ -49,7 +49,7 @@ export default function FinanceGovernancePage({ onAsk }) {
     <>
       <div className="rounded-xl mb-6 p-6 bg-gradient-to-r from-green-700 to-emerald-800 text-white">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/20 text-white border border-white/10">Layer 1: Institutional Governance</span>
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/20 text-white border border-white/10"> </span>
         </div>
         <h2 className="text-2xl font-black text-white mb-1">Financial Governance</h2>
         <p className="text-green-100 text-sm">Revenue, Expenditure & Financial Health Dashboard — FY 2026</p>

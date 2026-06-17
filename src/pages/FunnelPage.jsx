@@ -39,7 +39,7 @@ export default function FunnelPage({ onAsk }) {
       {/* Header */}
       <div className="rounded-xl mb-6 p-6 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white">Layer 3: Channel Governance</span>
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white"> </span>
         </div>
         <h2 className="text-2xl font-black text-white mb-1">8-Stage International Recruitment Funnel</h2>
         <p className="text-blue-100 text-sm">Lead-to-Enrollment Conversion Intelligence — June 2026 Intake</p>

@@ -82,7 +82,7 @@ export default function DigitalCampaignsPage({ onAsk }) {
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-violet-700 rounded-2xl p-6 md:p-8 text-white shadow-xl">
         <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-white/20 rounded-full px-3 py-1 mb-3">
-          Layer 3: Channel Governance
+           
         </span>
         <h1 className="text-2xl md:text-3xl font-bold mb-1">Digital Marketing Campaigns</h1>
         <p className="text-purple-100 text-sm md:text-base">
@@ -91,7 +91,7 @@ export default function DigitalCampaignsPage({ onAsk }) {
         {onAsk && (
           <button
             onClick={() => onAsk("Which digital platform drives the best quality applications?")}
-            className="mt-4 inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 transition rounded-lg px-4 py-2 text-sm font-medium"
+            className="mt-4 inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white transition rounded-lg px-4 py-2 text-sm font-medium"
           >
             <Lightbulb size={15} /> Ask Buddy about digital campaigns
           </button>

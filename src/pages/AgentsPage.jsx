@@ -118,7 +118,7 @@ export default function AgentsPage() {
       {/* Page Header */}
       <div style={{ marginBottom: '18px' }}>
         <span style={{ fontSize: '10px', fontWeight: 'bold', letterSpacing: '0.05em', color: '#3b82f6', textTransform: 'uppercase', display: 'block' }}>
-          Layer 3: Channel Management
+           
         </span>
         <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#1e293b', margin: '4px 0 0' }}>
           Agent Performance Scorecard

@@ -147,7 +147,7 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
               <div className="flex items-center gap-3">
                 <div className="p-2.5 bg-green-50 rounded-xl text-green-600"><TrendingUp size={24} strokeWidth={2.5} /></div>
                 <div>
-                  <h3 className="font-black text-slate-800 m-0 text-lg">Channel Governance</h3>
+                  <h3 className="font-black text-slate-800 m-0 text-lg"> </h3>
                   <span className="text-[10px] font-bold text-green-600 uppercase tracking-wider bg-green-50 px-2 py-0.5 rounded">Layer 3</span>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
             </ul>
           </div>
           <button className="w-full bg-slate-50 p-4 border-t border-slate-100 text-green-600 font-bold text-xs hover:bg-green-50 transition-colors flex items-center justify-center gap-1" onClick={() => navigateHash('agents')}>
-            Channel Governance <ChevronRight size={14} />
+              <ChevronRight size={14} />
           </button>
         </div>
       </div>
@@ -288,7 +288,7 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
               </div>
             </div>
             <div>
-              <h4 className="text-xs font-black uppercase text-slate-400 tracking-wider mb-3">Priority SLA Breaches (Layer 2)</h4>
+              <h4 className="text-xs font-black uppercase text-slate-400 tracking-wider mb-3">Priority SLA Breaches</h4>
               <div className="space-y-2">
                 <div className="p-3 bg-red-50/50 rounded-lg border border-red-100 flex justify-between items-center">
                   <div>
@@ -319,7 +319,7 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
         {activeTab === 'channel' && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h4 className="text-xs font-black uppercase text-slate-400 tracking-wider mb-3">Top Markets (Layer 3)</h4>
+              <h4 className="text-xs font-black uppercase text-slate-400 tracking-wider mb-3">Top Markets</h4>
               <div className="space-y-2">
                 <div className="flex justify-between items-center p-2.5 bg-slate-50 rounded-lg text-xs">
                   <span className="font-bold text-slate-700">1. India</span>
@@ -364,85 +364,6 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
         )}
       </div>
 
-      <section className="two-column">
-        {/* SECTION 4: CRITICAL ACTIONS PANEL */}
-        <Card title="Critical Governance Actions">
-          <div className="flex flex-col gap-3 mt-4">
-            {EXEC_ACTIONS.map((act, index) => {
-              const isCrit = act.priority === 'Critical';
-              const handleEscalate = () => {
-                if (act.layer === 'L1') {
-                  navigateHash('university-governance');
-                } else if (act.layer === 'L2') {
-                  navigateHash('student-lifecycle');
-                } else if (act.layer === 'L3') {
-                  navigateHash('agents');
-                }
-              };
-
-              return (
-                <div key={index} className={`bg-white border p-4 rounded-lg shadow-sm flex flex-col gap-3 ${isCrit ? 'border-l-4 border-l-red-500 border-red-100' : 'border-l-4 border-l-amber-500 border-amber-100'}`}>
-                  <div className="flex justify-between items-start gap-4">
-                    <div className="flex flex-wrap gap-2 mb-1">
-                      <span className={`px-2 py-0.5 text-[9px] font-bold rounded uppercase ${isCrit ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>{act.priority}</span>
-                      <span className="px-2 py-0.5 text-[9px] font-bold rounded uppercase bg-slate-800 text-slate-200">{act.layer}</span>
-                      <span className={`px-2 py-0.5 text-[9px] font-bold rounded uppercase bg-red-500 text-white`}>{act.dueIn}</span>
-                    </div>
-                  </div>
-                  <p className="text-sm font-bold text-slate-800 leading-snug">{act.action}</p>
-                  <div className="flex items-center justify-between mt-1 pt-3 border-t border-slate-100">
-                    <span className="text-xs text-slate-500 font-medium">Owner: {act.owner}</span>
-                    <div className="flex gap-2">
-                      <button className="px-3 py-1.5 bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-bold rounded transition-colors flex items-center gap-1" onClick={() => onAsk(act.action)}><Bot size={12}/> Ask Buddy</button>
-                      <button className="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-bold rounded transition-colors" onClick={handleEscalate}>Escalate</button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Card>
-
-        {/* SECTION 5 & 6 */}
-        <div className="flex flex-col gap-6">
-          <Card title="Command Quick Actions">
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('student-lifecycle')}>
-                <div className="p-2 bg-red-100 text-red-600 rounded-lg group-hover:bg-red-500 group-hover:text-white transition-colors"><AlertTriangle size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Review SLA Breaches</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('finance-governance')}>
-                <div className="p-2 bg-amber-100 text-amber-600 rounded-lg group-hover:bg-amber-500 group-hover:text-white transition-colors"><DollarSign size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Approve Scholarships</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('student-pipeline')}>
-                <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-500 group-hover:text-white transition-colors"><Clock size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Check Visa Pipeline</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('admission-quality')}>
-                <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg group-hover:bg-emerald-500 group-hover:text-white transition-colors"><Shield size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Agent Governance</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('markets')}>
-                <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg group-hover:bg-indigo-500 group-hover:text-white transition-colors"><Globe size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Market Intelligence</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('revenue-governance')}>
-                <div className="p-2 bg-teal-100 text-teal-600 rounded-lg group-hover:bg-teal-500 group-hover:text-white transition-colors"><TrendingUp size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Revenue Report</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('compliance-centre')}>
-                <div className="p-2 bg-rose-100 text-rose-600 rounded-lg group-hover:bg-rose-500 group-hover:text-white transition-colors"><ShieldAlert size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Compliance Issues</span>
-              </button>
-              <button className="p-3 bg-slate-50 hover:bg-white hover:shadow-md border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => onAsk('What are the most critical governance issues today?')}>
-                <div className="p-2 bg-purple-100 text-purple-600 rounded-lg group-hover:bg-purple-500 group-hover:text-white transition-colors"><Bot size={16}/></div>
-                <span className="text-xs font-bold text-slate-700">Ask Buddy</span>
-              </button>
-            </div>
-          </Card>
-        </div>
-      </section>
 
       {/* ── SECTION: RISK MATRIX OVERVIEW (HEATMAP) ── */}
       <div>
@@ -550,6 +471,84 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
           </button>
         </Card>
       </section>
+      {/* ── SECTION: CRITICAL ACTIONS + QUICK COMMANDS ── */}
+      <section className="two-column">
+        {/* CRITICAL ACTIONS PANEL */}
+        <Card title="Critical Governance Actions" className="h-full flex flex-col">
+          <div className="flex flex-col gap-3 mt-4 flex-1 justify-between">
+            {EXEC_ACTIONS.map((act, index) => {
+              const isCrit = act.priority === 'Critical';
+              const handleEscalate = () => {
+                if (act.layer === 'L1') {
+                  navigateHash('university-governance');
+                } else if (act.layer === 'L2') {
+                  navigateHash('student-lifecycle');
+                } else if (act.layer === 'L3') {
+                  navigateHash('agents');
+                }
+              };
+
+              return (
+                <div key={index} className={`bg-white border p-4 rounded-lg shadow-sm flex flex-col gap-3 ${isCrit ? 'border-l-4 border-l-red-500 border-red-100' : 'border-l-4 border-l-amber-500 border-amber-100'}`}>
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="flex flex-wrap gap-2 mb-1">
+                      <span className={`px-2 py-0.5 text-[9px] font-bold rounded uppercase ${isCrit ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>{act.priority}</span>
+                      <span className="px-2 py-0.5 text-[9px] font-bold rounded uppercase bg-slate-800 text-slate-200">{act.layer}</span>
+                      <span className={`px-2 py-0.5 text-[9px] font-bold rounded uppercase bg-red-500 text-white`}>{act.dueIn}</span>
+                    </div>
+                  </div>
+                  <p className="text-sm font-bold text-slate-800 leading-snug">{act.action}</p>
+                  <div className="flex items-center justify-between mt-1 pt-3 border-t border-slate-100">
+                    <span className="text-xs text-slate-500 font-medium">Owner: {act.owner}</span>
+                    <div className="flex gap-2">
+                      <button className="px-3 py-1.5 bg-blue-600 text-white hover:bg-blue-700 text-xs font-bold rounded transition-colors flex items-center gap-1" onClick={() => onAsk(act.action)}><Bot size={12}/> Ask Buddy</button>
+                      <button className="px-3 py-1.5 bg-slate-700 text-white hover:bg-slate-900 text-xs font-bold rounded transition-colors" onClick={handleEscalate}>Escalate</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+
+        {/* QUICK ACTIONS */}
+        <Card title="Command Quick Actions" className="h-full flex flex-col">
+          <div className="grid grid-cols-2 gap-3 mt-4 flex-1">
+            <button className="p-3 bg-slate-50 hover:bg-red-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('student-lifecycle')}>
+              <div className="p-2 bg-red-100 text-red-600 rounded-lg group-hover:bg-red-500 group-hover:text-white transition-colors"><AlertTriangle size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Review SLA Breaches</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-amber-500 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('finance-governance')}>
+              <div className="p-2 bg-amber-100 text-amber-600 rounded-lg group-hover:bg-amber-500 group-hover:text-white transition-colors"><DollarSign size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Approve Scholarships</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-blue-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('student-pipeline')}>
+              <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-500 group-hover:text-white transition-colors"><Clock size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Check Visa Pipeline</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-emerald-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('admission-quality')}>
+              <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg group-hover:bg-emerald-500 group-hover:text-white transition-colors"><Shield size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Agent Governance</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-indigo-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('markets')}>
+              <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg group-hover:bg-indigo-500 group-hover:text-white transition-colors"><Globe size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Market Intelligence</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-teal-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('revenue-governance')}>
+              <div className="p-2 bg-teal-100 text-teal-600 rounded-lg group-hover:bg-teal-500 group-hover:text-white transition-colors"><TrendingUp size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Revenue Report</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-rose-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => navigateHash('compliance-centre')}>
+              <div className="p-2 bg-rose-100 text-rose-600 rounded-lg group-hover:bg-rose-500 group-hover:text-white transition-colors"><ShieldAlert size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Compliance Issues</span>
+            </button>
+            <button className="p-3 bg-slate-50 hover:bg-purple-600 border border-slate-200 rounded-lg flex items-center gap-3 transition-all text-left group" onClick={() => onAsk('What are the most critical governance issues today?')}>
+              <div className="p-2 bg-purple-100 text-purple-600 rounded-lg group-hover:bg-purple-500 group-hover:text-white transition-colors"><Bot size={16}/></div>
+              <span className="text-xs font-bold text-slate-700 group-hover:text-white transition-colors">Ask Buddy</span>
+            </button>
+          </div>
+        </Card>
+      </section>
 
       {/* ── GOVERNANCE BUDDY INTEGRATION ── */}
       <div className="bg-gradient-to-r from-slate-800 to-blue-900 rounded-xl p-6 text-white shadow-lg border border-blue-800 relative">
@@ -557,9 +556,9 @@ export default function DashboardPage({ todos, toggleTodo, onAsk }) {
         <div className="relative z-10">
           <h3 className="text-lg font-black flex items-center gap-2 mb-4"><Bot size={20} className="text-blue-400"/> Governance Buddy — AI Intelligence</h3>
           <div className="flex flex-wrap gap-2 mb-5">
-            <button className="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1.5 rounded-full text-xs font-medium transition-colors" onClick={() => onAsk('Which students breach visa SLA this week?')}>Which students breach visa SLA this week?</button>
-            <button className="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1.5 rounded-full text-xs font-medium transition-colors" onClick={() => onAsk('What is the financial health of the university?')}>What is the financial health of the university?</button>
-            <button className="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1.5 rounded-full text-xs font-medium transition-colors" onClick={() => onAsk('Which channel has the highest ROI?')}>Which channel has the highest ROI?</button>
+            <button className="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1.5 rounded-full text-xs font-medium text-white transition-colors" onClick={() => onAsk('Which students breach visa SLA this week?')}>Which students breach visa SLA this week?</button>
+            <button className="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1.5 rounded-full text-xs font-medium text-white transition-colors" onClick={() => onAsk('What is the financial health of the university?')}>What is the financial health of the university?</button>
+            <button className="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-1.5 rounded-full text-xs font-medium text-white transition-colors" onClick={() => onAsk('Which channel has the highest ROI?')}>Which channel has the highest ROI?</button>
           </div>
           <form onSubmit={submitBuddy} className="flex relative">
             <input 

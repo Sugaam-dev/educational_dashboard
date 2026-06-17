@@ -104,7 +104,7 @@ export default function AppShell({ route, user, onLogout, sidebarCollapsed, setS
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 4px' }}>
           <button className="brand sidebar-brand" onClick={() => { navigateHash('landing'); closeMobile(); }} aria-label="Go to landing page">
             <img src="/logo.png" alt="PMRG Solution logo" />
-            {!sidebarCollapsed && <span>UniGov</span>}
+            {!sidebarCollapsed && <span style={{fontSize:'13px', fontWeight:'800', color:'#1e3a8a', letterSpacing:'-0.01em'}}></span>}
           </button>
           {/* Close button on mobile */}
           <button
@@ -231,7 +231,7 @@ function Topbar({ route, user, onHamburger }) {
         </button>
         <div>
           <h1>{title}</h1>
-          <p>Education governance dashboard — Mon, 15 Jun 2026 — signed in as {user.name}</p>
+          <p>University governance dashboard — Mon, 15 Jun 2026 — signed in as {user.name}</p>
         </div>
       </div>
       <div className="topbar-actions">
